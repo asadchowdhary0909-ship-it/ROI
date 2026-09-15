@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Live Chat</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="chat">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="chat-panel">
+
+        <div class="chat-header">
+            <div>
+                <h1>💬 Live Science Chat</h1>
+                <p id="firebaseStatus">Connecting...</p>
+            </div>
+            <span id="onlineCount">● Online</span>
+        </div>
+
+        <div id="chatMessages" class="chat-messages"></div>
+
+        <form id="chatForm" class="chat-form">
+            <input
+                id="chatInput"
+                type="text"
+                maxlength="300"
+                placeholder="Write a message..."
+                autocomplete="off"
+                required>
+            <button class="primary-btn" type="submit">Send</button>
+        </form>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+<script type="module">
+import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    onValue,
+    onDisconnect,
+    serverTimestamp,
+    query,
+    limitToLast
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDbA6RN-ICXBHM1tLGB6utshc-Xxf2e_z4",
+    authDomain: "chrono-fa677.firebaseapp.com",
+    databaseURL: "https://chrono-fa677-default-rtdb.firebaseio.com",
+    projectId: "chrono-fa677",
+    storageBucket: "chrono-fa677.firebasestorage.app",
+    messagingSenderId: "731558657346",
+    appId: "1:731558657346:web:895408cec3d0488740dcdb",
+    measurementId: "G-YPWXLMQ9ET"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const account = window.KS ? window.KS.getCurrentAccount() : null;
+
+const status = document.getElementById("firebaseStatus");
+const messagesBox = document.getElementById("chatMessages");
+const form = document.getElementById("chatForm");
+const input = document.getElementById("chatInput");
+
+if (!account) {
+    status.textContent = "Please create an account first.";
+    form.style.display = "none";
+} else {
+
+    const messagesRef = query(
+        ref(db, "kidsScienceChat/messages"),
+        limitToLast(100)
+    );
+
+    onValue(messagesRef, snapshot => {
+
+        messagesBox.innerHTML = "";
+
+        snapshot.forEach(child => {
+
+            const msg = child.val() || {};
+
+            const wrapper = document.createElement("div");
+            wrapper.className =
+                "chat-message " +
+                (msg.uid === account.uid ? "mine" : "");
+
+            const name = document.createElement("strong");
+            name.textContent =
+                `${msg.emoji || "🙂"} ${msg.name || "User"}`;
+
+            const text = document.createElement("p");
+            text.textContent = msg.text || "";
+
+            const time = document.createElement("small");
+
+            if (msg.timestamp) {
+                time.textContent =
+                    new Date(msg.timestamp).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+            }
+
+            wrapper.appendChild(name);
+            wrapper.appendChild(text);
+            wrapper.appendChild(time);
+
+            messagesBox.appendChild(wrapper);
+        });
+
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+        status.textContent = "🟢 Live";
+    }, error => {
+        console.error(error);
+        status.textContent = "🔴 Firebase connection error";
+    });
+
+    form.addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        const messageRef = push(
+            ref(db, "kidsScienceChat/messages")
+        );
+
+        await set(messageRef, {
+            uid: account.uid,
+            name: account.name,
+            emoji: account.emoji,
+            text: text,
+            timestamp: serverTimestamp()
+        });
+
+        input.value = "";
+        input.focus();
+    });
+
+    const connectionRef = ref(db, ".info/connected");
+
+    onValue(connectionRef, snapshot => {
+
+        if (snapshot.val() === true) {
+
+            status.textContent = "🟢 Live";
+
+            const onlineRef =
+                ref(db, "kidsScienceChat/online/" + account.uid);
+
+            set(onlineRef, {
+                uid: account.uid,
+                name: account.name,
+                emoji: account.emoji,
+                lastSeen: serverTimestamp()
+            });
+
+            onDisconnect(onlineRef).remove();
+
+        } else {
+            status.textContent = "🟡 Connecting...";
+        }
+    });
+}
+</script>
+
+</body>
+</html>

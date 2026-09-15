@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Courses</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="courses">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="page-heading">
+        <span>📚</span>
+        <div>
+            <h1>Science Courses</h1>
+            <p>Choose a book and explore its chapters.</p>
+        </div>
+    </div>
+
+    <section id="courseBooks" class="card-grid"></section>
+
+    <section id="chapterSection" class="hidden">
+        <button class="secondary-btn" onclick="KS.showBooks()">← Books</button>
+        <h2 id="bookTitle"></h2>
+        <div id="chapterList" class="chapter-grid"></div>
+    </section>
+
+    <section id="readerSection" class="hidden reader">
+        <button class="secondary-btn" onclick="KS.showChapters()">← Chapters</button>
+
+        <div id="chapterIllustration" class="chapter-illustration"></div>
+
+        <h1 id="readerTitle"></h1>
+        <div id="readerContent"></div>
+
+        <div class="reader-actions">
+            <button class="primary-btn" onclick="KS.startQuiz()">🧠 Start Q&A</button>
+        </div>
+    </section>
+
+    <section id="quizSection" class="hidden quiz-box">
+        <h2>🧠 Chapter Q&A</h2>
+        <div id="quizQuestions"></div>
+        <button class="primary-btn" onclick="KS.submitQuiz()">Submit Answers</button>
+        <div id="quizResult"></div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

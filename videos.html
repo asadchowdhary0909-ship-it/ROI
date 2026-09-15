@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Videos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="videos">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="page-heading">
+        <span>🎬</span>
+        <div>
+            <h1>Science Video Shop</h1>
+            <p>Unlock videos with PlayCoins and watch them here.</p>
+        </div>
+    </div>
+
+    <div id="videoGrid" class="card-grid"></div>
+
+    <section id="videoPlayerBox" class="video-player hidden">
+        <button class="secondary-btn" onclick="KS.closeVideo()">✕ Close</button>
+        <h2 id="playingTitle"></h2>
+        <div class="video-frame">
+            <iframe
+                id="youtubePlayer"
+                src=""
+                title="KIDS SCIENCE Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

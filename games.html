@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Games</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="games">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="page-heading">
+        <span>🎮</span>
+        <div>
+            <h1>Science Games</h1>
+            <p>Play, challenge yourself and earn PlayCoins.</p>
+        </div>
+    </div>
+
+    <section class="game-card">
+        <h2>🐦 Flappy Bird</h2>
+
+        <div class="game-info">
+            <span>Score: <b id="gameScore">0</b></span>
+            <span>Best: <b id="gameBest">0</b></span>
+            <span>Multiplier: <b id="gameMultiplier">×1</b></span>
+        </div>
+
+        <canvas id="gameCanvas" width="360" height="520"></canvas>
+
+        <p id="gameMessage">Press START, SPACE or tap the game.</p>
+
+        <button class="primary-btn" onclick="KS.startGame()">START GAME</button>
+        <button class="secondary-btn" onclick="KS.flap()">FLAP</button>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

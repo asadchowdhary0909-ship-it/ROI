@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Subscription</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="subscription">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="page-heading">
+        <span>👑</span>
+        <div>
+            <h1>Subscription Passes</h1>
+            <p>Every pass lasts exactly 10 days.</p>
+        </div>
+    </div>
+
+    <div id="currentPass" class="current-pass"></div>
+
+    <section class="pass-grid">
+
+        <article class="pass-card pro">
+            <div class="pass-symbol">💎</div>
+            <h2>PRO</h2>
+            <div class="pass-price">5,000 🪙</div>
+
+            <ul>
+                <li>500 PlayCoins daily</li>
+                <li>Videos 50 coins cheaper</li>
+                <li>Blue PRO avatar frame</li>
+                <li>Daily offers</li>
+                <li>10-day duration</li>
+            </ul>
+
+            <button class="primary-btn" onclick="KS.buyPass('PRO')">
+                Buy PRO
+            </button>
+        </article>
+
+        <article class="pass-card elite">
+            <div class="pass-symbol">👑</div>
+            <h2>ELITE</h2>
+            <div class="pass-price">8,000 🪙</div>
+
+            <ul>
+                <li>750 PlayCoins daily</li>
+                <li>Videos 100 coins cheaper</li>
+                <li>Golden ELITE avatar frame</li>
+                <li>Video purchase +100 coins</li>
+                <li>Flappy Bird daily ×20 offer</li>
+                <li>10-day duration</li>
+            </ul>
+
+            <button class="primary-btn" onclick="KS.buyPass('ELITE')">
+                Buy ELITE
+            </button>
+        </article>
+
+        <article class="pass-card premium">
+            <div class="pass-symbol">💜</div>
+            <h2>PREMIUM</h2>
+            <div class="pass-price">12,000 🪙</div>
+
+            <ul>
+                <li>400 PlayCoins daily</li>
+                <li>Videos 200 coins cheaper</li>
+                <li>Shiny purple avatar frame</li>
+                <li>More subscription discounts</li>
+                <li>Flappy Bird daily ×20 offer</li>
+                <li>10-day duration</li>
+            </ul>
+
+            <button class="primary-btn" onclick="KS.buyPass('PREMIUM')">
+                Buy PREMIUM
+            </button>
+        </article>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

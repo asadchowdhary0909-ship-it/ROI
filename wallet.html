@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIDS SCIENCE - Wallet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="wallet">
+
+<header class="topbar">
+    <div class="brand">🔬 KIDS SCIENCE</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="games.html">Games</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="videos.html">Videos</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="chat.html">Live Chat</a>
+        <a href="accounts.html">Account</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="wallet-main">
+        <div class="coin-icon">🪙</div>
+        <p>YOUR PLAYCOINS</p>
+        <h1 id="walletBalance">0</h1>
+        <p id="walletPass">FREE</p>
+
+        <button id="dailyBonusButton" class="primary-btn" onclick="KS.claimDailyBonus()">
+            🎁 Claim Daily Bonus
+        </button>
+    </div>
+
+    <section class="panel">
+        <h2>💳 Transactions</h2>
+        <div id="transactions"></div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
